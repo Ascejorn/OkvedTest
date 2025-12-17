@@ -5,35 +5,33 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.test</groupId>
-    <artifactId>okved-app</artifactId>
+    <groupId>com.okvedTest</groupId>
+    <artifactId>okvedTest-app</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>OKVED App</name>
-    <description>Тестовое задание: нормализация телефонных номеров и поиск кода ОКВЭД</description>
+    <name>okvedTest App</name>
+    <description>Нормализация телефонных номеров и поиск кода ОКВЭД</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <gson.version>2.10.1</gson.version>
+        <gson.version>2.13.2</gson.version>
+        <junit-jupiter.version>6.0.1</junit-jupiter.version>
     </properties>
 
     <dependencies>
-        <!-- Gson для парсинга JSON (Apache License 2.0) -->
-        <!-- https://github.com/google/gson -->
         <dependency>
-            <groupId>com.google.code.gson</groupId>
+                <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>${gson.version}</version>
         </dependency>
 
-        <!-- JUnit для тестирования (опционально) -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.9.3</version>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -41,29 +39,24 @@
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
-            <!-- Компиляция -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>15</source>
+                    <target>15</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-
-            <!-- Запуск через mvn exec:java -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>Main</mainClass>
+                    <mainClass>com.okvedTest.Application</mainClass>
                 </configuration>
             </plugin>
-
-            <!-- Сборка JAR с зависимостями -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -71,7 +64,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>Main</mainClass>
+                            <mainClass>com.okvedTest.Application</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -88,8 +81,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!-- Тесты -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
